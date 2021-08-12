@@ -2,10 +2,10 @@ class Board:
     ex = "X"
     o = "O"
 
-    def __init__(self):
-        self.board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-        self.available = [True, True, True, True, True, True, True, True, True]
-        self.whose_turn = self.ex
+    def __init__(self, board=[" ", " ", " ", " ", " ", " ", " ", " ", " "], whose_turn=ex):
+        self.board = board
+        self.available = [i == " " for i in board]
+        self.whose_turn = whose_turn
 
     def is_winner(self):
         if self.board[0] != ' ':
