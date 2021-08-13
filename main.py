@@ -19,6 +19,7 @@ def player_turn():
 def computer_turn(which_ai):
     play_cell = which_ai(playing_board)
     playing_board.turn(play_cell)
+    playing_board.print_board()
     return playing_board.is_winner()
 
 
@@ -54,6 +55,25 @@ if __name__ == "__main__":
         for i in range(len(ai_types)):
             print(f"{i+1}. {ai_type_string[i]}")
         ai_choice = ai_types[int(input())-1]
+        turn_choice = input("Do you want to go first or second (f or s)? ")
+        first_turn = "computer"
+        second_turn = "player"
+        if turn_choice == 'f':
+            first_turn = "player"
+            second_turn = "computer"
+        winner = ''
+        while winner == '':
+            turn = second_turn
+            if playing_board.whose_turn == playing_board.ex:
+                turn = first_turn
+            if turn == "computer":
+                is_winning = computer_turn(ai_choice)
+            else:
+                is_winning = player_turn()
+        if winner == playing_board.ex:
+            print(f"{first_turn} is the victor")
+        else:
+            print(f"{second_turn} is the victor")
 
     # Computer vs Computer
     if game_mode == "3":
@@ -63,3 +83,11 @@ if __name__ == "__main__":
         ai_choice1 = ai_types[int(input()) - 1]
         print("Which Computer Ai do you want to use for the second computer")
         ai_choice2 = ai_types[int(input()) - 1]
+        winner = ""
+        while winner == "":
+            turn = ai_choice2
+            if playing_board.whose_turn == playing_board.ex:
+                turn = ai_choice1
+            winner = computer_turn(turn)
+        if winner == playing_board.ex:
+            print(f"")
