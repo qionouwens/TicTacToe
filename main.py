@@ -50,7 +50,6 @@ if __name__ == "__main__":
 
     # Player vs Computer
     if game_mode == "2":
-        player = input("What is the name of the player? ")
         print("Which Computer Ai do you want to use")
         for i in range(len(ai_types)):
             print(f"{i+1}. {ai_type_string[i]}")
@@ -67,9 +66,9 @@ if __name__ == "__main__":
             if playing_board.whose_turn == playing_board.ex:
                 turn = first_turn
             if turn == "computer":
-                is_winning = computer_turn(ai_choice)
+                winner = computer_turn(ai_choice)
             else:
-                is_winning = player_turn()
+                winner = player_turn()
         if winner == playing_board.ex:
             print(f"{first_turn} is the victor")
         else:
